@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import RatingSelect from './RatingSelect';
 import Card from './shared/Card';
 import Button from './shared/Button';
+import FeedbackContext from '../context/FeedbackContext';
 
-function FeedbackForm({ handleAdd }) {
+function FeedbackForm() {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState(''); // error message in case input is less than 10 char.
+
+  const { addFeedback } = useContext(FeedbackContext);
 
   const handleTextChange = (e) => {
     if (text === '') {
@@ -33,7 +36,8 @@ function FeedbackForm({ handleAdd }) {
       };
       console.log(newFeedback);
 
-      handleAdd(newFeedback); // propp f passed from App
+      // handleAdd(newFeedback); // propp f passed from App
+      addFeedback(newFeedback); // from context
 
       setText('');
     }
