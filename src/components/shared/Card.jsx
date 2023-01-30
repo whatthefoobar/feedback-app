@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function Card({ children, reverse }) {
   // return <div className={`card ${reverse && 'reverse'}`}>{children}</div> // conditional class
@@ -7,9 +7,10 @@ function Card({ children, reverse }) {
     <div
       className="card"
       style={{
-        backgroundColor: reverse ? 'rgba(0,0,0,0.4)' : '#fff',
-        color: reverse ? '#fff' : '#000',
+        backgroundColor: reverse ? "rgba(0,0,0,0.4)" : "#fff",
+        color: reverse ? "#fff" : "#000",
       }} // conditional styling
+      // reversed is good for making a darkmode toggle
     >
       {children}
     </div>

@@ -1,5 +1,5 @@
 // import { v4 as uuidv4 } from 'uuid';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
 
@@ -19,7 +19,7 @@ export const FeedbackProvider = ({ children }) => {
 
   // Fetch feedback
   const fetchFeedback = async () => {
-    const response = await fetch('/feedback?_sort=id&_order=desc');
+    const response = await fetch("/feedback?_sort=id&_order=desc");
     const data = await response.json();
 
     setFeedback(data);
@@ -28,11 +28,11 @@ export const FeedbackProvider = ({ children }) => {
   //Add item
   const addFeedback = async (newFeedback) => {
     // newFeedback.id = uuidv4();
-    //fetch from our backend
-    const response = await fetch('/feedback', {
-      method: 'POST',
+    //post req to our backend
+    const response = await fetch("/feedback", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newFeedback),
     });
@@ -43,8 +43,8 @@ export const FeedbackProvider = ({ children }) => {
 
   //Delete item
   const deleteFeedback = async (id) => {
-    if (window.confirm('Are you sure you want to delete?')) {
-      await fetch(`/feedback/${id}`, { method: 'DELETE' });
+    if (window.confirm("Are you sure you want to delete?")) {
+      await fetch(`/feedback/${id}`, { method: "DELETE" });
 
       setFeedback(feedback.filter((item) => item.id !== id));
     }
@@ -53,9 +53,9 @@ export const FeedbackProvider = ({ children }) => {
   // Update feedback item
   const updateFeedback = async (id, updItem) => {
     const response = await fetch(`/feedback/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(updItem),
     });
