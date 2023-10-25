@@ -1,5 +1,4 @@
-
-App no. 1 MERN Feedback app.
+ MERN Feedback app.
 This app allows users to add, update and delete feedback. 
 Frontend is done with react.js and the backend is Node with Express.
 
