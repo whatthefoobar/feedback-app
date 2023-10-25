@@ -43,9 +43,8 @@ function FeedbackForm() {
         text,
         rating,
       };
-      console.log(newFeedback);
+      // console.log(newFeedback);
 
-      // handleAdd(newFeedback); // propp f passed from App
       //from context the 2 f
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item._id, newFeedback);

@@ -46,7 +46,10 @@ export const FeedbackProvider = ({ children }) => {
     if (window.confirm("Are you sure you want to delete?")) {
       await fetch(`/api/feedbacks/${id}`, { method: "DELETE" });
 
-      setFeedback(feedback.filter((item) => item.id !== id));
+      const response = await fetch("/api/feedbacks");
+      const data = await response.json();
+
+      setFeedback(data);
     }
   };
 
@@ -60,14 +63,10 @@ export const FeedbackProvider = ({ children }) => {
       body: JSON.stringify(updItem),
     });
 
-    const data = await response.json();
+    const updatedResponse = await fetch("/api/feedbacks");
+    const data = await updatedResponse.json();
 
-    //  setFeedback(
-    //    feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
-    //  );
-    setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
-    );
+    setFeedback(data);
   };
 
   // Set item to be updated
