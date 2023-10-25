@@ -19,7 +19,7 @@ export const FeedbackProvider = ({ children }) => {
 
   // Fetch feedback
   const fetchFeedback = async () => {
-    const response = await fetch("/feedback?_sort=id&_order=desc");
+    const response = await fetch("/api/feedbacks");
     const data = await response.json();
 
     setFeedback(data);
@@ -29,7 +29,7 @@ export const FeedbackProvider = ({ children }) => {
   const addFeedback = async (newFeedback) => {
     // newFeedback.id = uuidv4();
     //post req to our backend
-    const response = await fetch("/feedback", {
+    const response = await fetch("/api/feedbacks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export const FeedbackProvider = ({ children }) => {
   //Delete item
   const deleteFeedback = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      await fetch(`/feedback/${id}`, { method: "DELETE" });
+      await fetch(`/api/feedbacks/${id}`, { method: "DELETE" });
 
       setFeedback(feedback.filter((item) => item.id !== id));
     }
@@ -52,7 +52,7 @@ export const FeedbackProvider = ({ children }) => {
 
   // Update feedback item
   const updateFeedback = async (id, updItem) => {
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`/api/feedbacks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

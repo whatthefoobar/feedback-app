@@ -1,14 +1,14 @@
-import { useState, useContext, useEffect } from 'react';
-import RatingSelect from './RatingSelect';
-import Card from './shared/Card';
-import Button from './shared/Button';
-import FeedbackContext from '../context/FeedbackContext';
+import { useState, useContext, useEffect } from "react";
+import RatingSelect from "./RatingSelect";
+import Card from "./shared/Card";
+import Button from "./shared/Button";
+import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackForm() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [message, setMessage] = useState(''); // error message in case input is less than 10 char.
+  const [message, setMessage] = useState(""); // error message in case input is less than 10 char.
 
   const { addFeedback, feedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
@@ -22,12 +22,12 @@ function FeedbackForm() {
   }, [feedbackEdit]);
 
   const handleTextChange = (e) => {
-    if (text === '') {
+    if (text === "") {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text !== '' && text.trim().length <= 10) {
+    } else if (text !== "" && text.trim().length <= 10) {
       // trim removes whitesåpaces from both sides of string; check if its's less than 10 char.
-      setMessage('Text must be at least 10 characters');
+      setMessage("Text must be at least 10 characters");
       setBtnDisabled(true);
     } else {
       setMessage(null);
@@ -48,12 +48,12 @@ function FeedbackForm() {
       // handleAdd(newFeedback); // propp f passed from App
       //from context the 2 f
       if (feedbackEdit.edit === true) {
-        updateFeedback(feedbackEdit.item.id, newFeedback);
+        updateFeedback(feedbackEdit.item._id, newFeedback);
       } else {
         addFeedback(newFeedback);
       }
 
-      setText('');
+      setText("");
     }
   };
 
